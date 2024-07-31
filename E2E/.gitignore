@@ -12,6 +12,8 @@ target/
 *.iml
 *.ipr
 E2E/.idea
+.idea/*
+.idea
 ### Eclipse ###
 .apt_generated
 .classpath
