@@ -68,9 +68,8 @@ This allows you to isolate the installation of packages to a **project-specific*
     In case you do not use the `requirements.txt` or `venv` file, run the following command to install the dependencies at **global** level of your system:
 
     ```bash
-    pip install selenium==4.17.2
-    pip install webdriver-manager==4.0.1
-    pip install pytest-html==4.0.2
+    pip install selenium==4.23.1
+    pip install webdriver-manager==4.0.2
     pip install behave==1.2.6
     pip install allure-behave==2.13.5
     ```
