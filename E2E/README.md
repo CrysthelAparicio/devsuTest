@@ -56,7 +56,7 @@ This allows you to isolate the installation of packages to a **project-specific*
     In the same terminal, define your workstation, with the following command:
 
     ```bash
-    $env:PYTHONPATH="C:\YOUR_WORKSTATION\Jury360Automation"
+    $env:PYTHONPATH="C:\YOUR_WORKSTATION\devsuTest\E2E"
     ```
 
 5.  Install the following dependencies:  
