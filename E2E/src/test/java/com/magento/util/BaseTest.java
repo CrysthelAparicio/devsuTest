@@ -3,10 +3,13 @@ package com.magento.util;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+
+import com.magento.page.BuyProductPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import com.magento.page.LoginPage;
+import com.magento.page.BuyProductPage;
 
 public class BaseTest {
 
@@ -15,6 +18,7 @@ public class BaseTest {
     private FileReader reader;
     private Properties props;
     protected LoginPage loginPageCommerce;
+    protected BuyProductPage buyProductPage;
 
 
     @BeforeTest
@@ -32,6 +36,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get(BASE_URL);
         loginPageCommerce = new LoginPage(driver);
+        buyProductPage = new BuyProductPage(driver);
     }
 
     @AfterMethod
