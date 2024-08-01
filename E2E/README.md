@@ -81,8 +81,12 @@ This allows you to isolate the installation of packages to a **project-specific*
 
     ```bash
     $ behave ./Feature/
+    $ behave ./Feature/Purchase/test_purchase.feature
+
+    report with allure
+    $ behave -f allure_behave.formatter:AllureFormatter -o allure-results ./Feature/
 
     show report
-    $ allure serve %allure_result_folder%
+    $ allure serve allure-results
     ```
     

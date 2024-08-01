@@ -4,3 +4,4 @@ vdevsu/
 # logs
 *.pyc
 **/__pycache__/
+allure-results/
