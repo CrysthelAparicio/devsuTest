@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-#variables globales
+#global variables
 user = Pam.User
 password = Pam.Pass
 pageLogin = Login()
@@ -23,18 +23,18 @@ def step_impl(context):
 
 @when('A user enters a username')
 def step_impl(context):
-    context.utils.send_key(context.utils.get_element_by_id(pageLogin.inputUserName), user)
+    context.utils.sendKey(context.utils.getElementById(pageLogin.inputUserName), user)
 
 @when('A user enters a password')
 def step_impl(context):
-    context.utils.send_key(context.utils.get_element_by_id(pageLogin.inputPassword), password)
+    context.utils.sendKey(context.utils.getElementById(pageLogin.inputPassword), password)
 
 @when('A user clicks on login button')
 def step_impl(context):
-    context.utils.click(context.utils.get_element_by_id(pageLogin.btnLogin))
+    context.utils.click(context.utils.getElementById(pageLogin.btnLogin))
     
 @then('A user sees swag labs title')
 def step_impl(context):
-    context.utils.is_displayed(context.utils.get_element_by_class_name(pageLogin.headerContainer))
+    context.utils.isDisplayed(context.utils.getElementByClassName(pageLogin.headerContainer))
 
 #------------------------------------------------------------------------------------------------------------------
