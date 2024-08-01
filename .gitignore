@@ -1,2 +1,4 @@
 
 .idea
+E2E/target/
+E2E/src/test/resources/chromedriver.exe

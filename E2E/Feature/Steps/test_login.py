@@ -28,13 +28,32 @@ def step_impl(context):
 @when('A user enters a password')
 def step_impl(context):
     context.utils.sendKey(context.utils.getElementById(pageLogin.inputPassword), password)
+@when('A user enters a username wrong')
+def step_impl(context):
+    context.utils.sendKey(context.utils.getElementById(pageLogin.inputUserName), "ss")
+
+@when('A user enters a password wrong')
+def step_impl(context):
+    context.utils.sendKey(context.utils.getElementById(pageLogin.inputPassword), "123")
 
 @when('A user clicks on login button')
 def step_impl(context):
     context.utils.click(context.utils.getElementById(pageLogin.btnLogin))
-    
+@then('A user validate password is required message')
+def step_impl(context):
+    elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorPasswordIsRequired)
+    context.utils.assertEqual(elementMessage,'Epic sadface: Password is required')
+@then('A user validate username is required message')
+def step_impl(context):
+    elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorUserIsRequired)
+    context.utils.assertEqual(elementMessage,'Epic sadface: Username is required')
+@then('A user validate username and password message are wrong')
+def step_impl(context):
+    elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorUserAndPasswordDoNotMatch)
+    context.utils.assertEqual(elementMessage,'Epic sadface: Username and password do not match any user in this service')
+
 @then('A user sees swag labs title')
 def step_impl(context):
     context.utils.isDisplayed(context.utils.getElementByClassName(pageLogin.headerContainer))
 
-#------------------------------------------------------------------------------------------------------------------
+

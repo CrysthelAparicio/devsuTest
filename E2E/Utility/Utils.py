@@ -68,4 +68,5 @@ class Utils():
       assert element.is_displayed(), 'Element is not present.'
 
     def assertEqual(self, element, text):    
-      assert element.text == text, f'The text is not equal' 
+      assert element.text == text, f'The text is not equal {element.text}'
+
