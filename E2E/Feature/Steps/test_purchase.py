@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-#variables globales
+#global variables
 user = Pam.User
 password = Pam.Pass
 pageLogin = Login()
@@ -30,9 +30,9 @@ def step_impl(context):
 @when('A user adds "{number}" products to cart')
 def step_impl(context, number):
     elements = context.utils.getElementsByXpath(pagePurchase.listBtnAddToCart)
-    for i in range(1, len(number) + 1):
+    for i in range(0, len(number) + 1):
         context.utils.click(elements[i])
-
+        
 @when('A user clicks on shopping cart button')
 def step_impl(context):
     context.utils.click(context.utils.getElementById(pagePurchase.btnShoppingCart))

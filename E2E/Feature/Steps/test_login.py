@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-#variables globales
+#global variables
 user = Pam.User
 password = Pam.Pass
 pageLogin = Login()
