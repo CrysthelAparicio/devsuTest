@@ -1,12 +1,10 @@
-import { Given, When, Then ,Before} from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then, Before } from "@badeball/cypress-cucumber-preprocessor";
 import faker from 'faker';
-import  {makeApiRequest} from '../../support/helper/utils';
-import  {generateRandomId} from '../../support/helper/utils';
-import  {addedPet} from '../../support/helper/utils';
+import { makeApiRequest, generateRandomId, createAddedPet } from '../../support/helper/utils';
 
 let response;
-let addedPet;
 let petId;
+let addedPet;
 
 Then('the response status should be 200', function () {
   cy.get('@response').then((response) => {
@@ -23,12 +21,15 @@ Then('the response should contain the created pet data', function () {
   });
 });
 
-
 //------------------ Find Pet by ID -------------------------
 
 When('a user sends a GET request to find the pet by ID', function () {
   cy.get('@petId').then((petId) => {
-    makeApiRequest('GET', `/pet/${petId}`,Cypress.env('URL_BASE')).then((res) => {
+    makeApiRequest({
+      method: 'GET',
+      endpoint: `/pet/${petId}`,
+      baseUrl: Cypress.env('URL_BASE')
+    }).then((res) => {
       cy.wrap(res).as('response');
     });
   });
@@ -50,7 +51,11 @@ Then('the pet details should match the added pet', function () {
 //------------------ Find Pets by Status -------------------------
 
 When('a user sends a GET request to find pets by status {string}', function (status) {
-  makeApiRequest('GET', `/pet/findByStatus?status=${status}`,Cypress.env('URL_BASE')).then((res) => {
+  makeApiRequest({
+    method: 'GET',
+    endpoint: `/pet/findByStatus?status=${status}`,
+    baseUrl: Cypress.env('URL_BASE')
+  }).then((res) => {
     cy.wrap(res).as('response');
   });
 });
@@ -76,16 +81,21 @@ When('a user sends a POST request to update the pet with new details', function 
     const updatedPetName = faker.animal.cat();
     const formData = `id=${petId}&name=${updatedPetName}&status=sold`;
 
-    makeApiRequest('POST', `/pet/${petId}`,Cypress.env('URL_BASE'), formData, true)
-      .then((res) => {
-        response = res;
-        expect(res.status).to.eq(200);
-        cy.wrap(response).as('response');
+    makeApiRequest({
+      method: 'POST',
+      endpoint: `/pet/${petId}`,
+      baseUrl: Cypress.env('URL_BASE'),
+      body: formData,
+      form: true
+    }).then((res) => {
+      response = res;
+      expect(res.status).to.eq(200);
+      cy.wrap(response).as('response');
 
-        addedPet.name = updatedPetName;
-        addedPet.status = 'sold';
-        cy.wrap(addedPet).as('addedPet');
-      });
+      addedPet.name = updatedPetName;
+      addedPet.status = 'sold';
+      cy.wrap(addedPet).as('addedPet');
+    });
   });
 });
 
@@ -96,13 +106,20 @@ Then('the pet should be updated successfully', function () {
   });
 });
 
-Before(()=>{
+//------------------ Before Hook -------------------------
+
+Before(() => {
   petId = generateRandomId();
   const petName = faker.animal.dog();
 
-  addedPet = addedPet(petId,petName);
+  addedPet = createAddedPet(petId, petName);
 
-  makeApiRequest('POST', '/pet',Cypress.env('URL_BASE'), addedPet).then((res) => {
+  makeApiRequest({
+    method: 'POST',
+    endpoint: '/pet',
+    baseUrl: Cypress.env('URL_BASE'),
+    body: addedPet
+  }).then((res) => {
     response = res;
     expect(res.status).to.eq(200);
     cy.wrap(petId).as('petId');
