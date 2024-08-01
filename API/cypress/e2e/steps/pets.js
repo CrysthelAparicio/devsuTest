@@ -21,7 +21,7 @@ const makeApiRequest = (method, endpoint, body = null) => {
     failOnStatusCode: false
   });
 };
-
+//------------------Add a New pet to the store -------------------------
 Given("A user sends a POST request to add a pet", () => {
   petId = generateRandomId();
   petName = faker.animal.dog();
@@ -53,5 +53,25 @@ Then('The response should contain the created pet data', function () {
   cy.get('@response').then((response) => {
     expect(response.body.name).to.eq(petName);
     expect(response.body.id).to.eq(petId);
+  });
+});
+
+//------------------ Find pet by ID -------------------------
+Given("A user sends a GET request to find a pet by ID", function () {
+  cy.get('@petId').then((petId) => {
+    makeApiRequest('GET', `/pet/${petId}`).then((res) => {
+      cy.wrap(res).as('response');
+    });
+  });
+});
+
+Then("The pet details should match the added pet", function () {
+  cy.get('@response').then((response) => {
+    expect(response.body.name).to.eq(petName);
+    expect(response.body.id).to.eq(petId);
+    expect(response.body.category.name).to.eq(addedPet.category.name);
+    expect(response.body.photoUrls).to.deep.equal(addedPet.photoUrls);
+    expect(response.body.tags[0].name).to.eq(addedPet.tags[0].name);
+    expect(response.body.status).to.eq(addedPet.status);
   });
 });
