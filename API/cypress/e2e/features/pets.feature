@@ -1,24 +1,25 @@
 Feature: Pet Store Management
+ 
+  Background: 
+    Given a user sends a POST request to add a new pet
+   
 
   Scenario: Add a new pet to the store
-    Given A user sends a POST request to add a pet
-    Then The response status should be 200
-    And The response should contain the created pet data
+    Then the response status should be 200
+    Then the response should contain the created pet data
+    And the pet is added successfully
 
-  Scenario: Find pet by ID
-    Given A user sends a POST request to add a pet
-    When A user sends a GET request to find a pet by ID
-    Then The response status should be 200
-    And The pet details should match the added pet
+  Scenario: Find a pet by ID
+    When a user sends a GET request to find the pet by ID
+    Then the response status should be 200
+    And the pet details should match the added pet
 
-   Scenario: Find pets by status
-    Given A user sends a POST request to add a pet
-    When  A user sends a Get request to find a pet by status "available"
-    When   The response status should be 200
-    Then   The list of pets should include the added pet
+  Scenario: Find pets by status
+    When a user sends a GET request to find pets by status "available"
+    Then the response status should be 200
+    And the list of pets should include the added pet
 
-   Scenario: Update a pet in the store with form data
-    Given A user sends a POST request to add a pet
-    When  A user sends a POST request to update a pet with new details
-    When   The response status should be 200
-    Then   The pet should be updated successfully
+  Scenario: Update a pet in the store with form data
+    When a user sends a POST request to update the pet with new details
+    Then the response status should be 200
+    And the pet should be updated successfully
