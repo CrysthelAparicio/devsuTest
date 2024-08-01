@@ -25,5 +25,8 @@ module.exports = defineConfig({
     headless:true,
     
   },
+  env: {
+    URL_BASE:'https://petstore.swagger.io/v2',
+  }
 
 });

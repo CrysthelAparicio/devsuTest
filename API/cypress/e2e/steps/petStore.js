@@ -1,51 +1,12 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then ,Before} from "@badeball/cypress-cucumber-preprocessor";
 import faker from 'faker';
+import  {makeApiRequest} from '../../support/helper/utils';
+import  {generateRandomId} from '../../support/helper/utils';
+import  {addedPet} from '../../support/helper/utils';
 
-const baseUrl = 'https://petstore.swagger.io/v2';
-let addedPet;
 let response;
+let addedPet;
 let petId;
-
-const generateRandomId = () => Math.floor(Math.random() * 10000);
-
-const makeApiRequest = (method, endpoint, body = null, form = false) => {
-  return cy.request({
-    method,
-    url: `${baseUrl}${endpoint}`,
-    body,
-    headers: form ? {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    } : {
-      'accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    failOnStatusCode: false
-  });
-};
-
-//------------------ Background: Add a New Pet to the Store -------------------------
-Given("a user sends a POST request to add a new pet", function () {
-  petId = generateRandomId();
-  const petName = faker.animal.dog();
-
-  addedPet = {
-    id: petId,
-    name: petName,
-    category: { id: 1, name: 'Dogs' },
-    photoUrls: ["string"],
-    tags: [{ id: 1, name: 'tag1' }],
-    status: 'available'
-  };
-
-  makeApiRequest('POST', '/pet', addedPet).then((res) => {
-    response = res;
-    expect(res.status).to.eq(200);
-    cy.wrap(petId).as('petId');
-    cy.wrap(addedPet).as('addedPet');
-    cy.wrap(res).as('response');
-  });
-});
 
 Then('the response status should be 200', function () {
   cy.get('@response').then((response) => {
@@ -67,7 +28,7 @@ Then('the response should contain the created pet data', function () {
 
 When('a user sends a GET request to find the pet by ID', function () {
   cy.get('@petId').then((petId) => {
-    makeApiRequest('GET', `/pet/${petId}`).then((res) => {
+    makeApiRequest('GET', `/pet/${petId}`,Cypress.env('URL_BASE')).then((res) => {
       cy.wrap(res).as('response');
     });
   });
@@ -89,7 +50,7 @@ Then('the pet details should match the added pet', function () {
 //------------------ Find Pets by Status -------------------------
 
 When('a user sends a GET request to find pets by status {string}', function (status) {
-  makeApiRequest('GET', `/pet/findByStatus?status=${status}`).then((res) => {
+  makeApiRequest('GET', `/pet/findByStatus?status=${status}`,Cypress.env('URL_BASE')).then((res) => {
     cy.wrap(res).as('response');
   });
 });
@@ -115,7 +76,7 @@ When('a user sends a POST request to update the pet with new details', function 
     const updatedPetName = faker.animal.cat();
     const formData = `id=${petId}&name=${updatedPetName}&status=sold`;
 
-    makeApiRequest('POST', `/pet/${petId}`, formData, true)
+    makeApiRequest('POST', `/pet/${petId}`,Cypress.env('URL_BASE'), formData, true)
       .then((res) => {
         response = res;
         expect(res.status).to.eq(200);
@@ -132,5 +93,20 @@ Then('the pet should be updated successfully', function () {
   cy.get('@response').then((response) => {
     expect(response.body.code).to.eq(200);
     expect(response.body.message).to.eq(petId.toString());
+  });
+});
+
+Before(()=>{
+  petId = generateRandomId();
+  const petName = faker.animal.dog();
+
+  addedPet = addedPet(petId,petName);
+
+  makeApiRequest('POST', '/pet',Cypress.env('URL_BASE'), addedPet).then((res) => {
+    response = res;
+    expect(res.status).to.eq(200);
+    cy.wrap(petId).as('petId');
+    cy.wrap(addedPet).as('addedPet');
+    cy.wrap(res).as('response');
   });
 });

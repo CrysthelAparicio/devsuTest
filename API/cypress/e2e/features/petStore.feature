@@ -1,8 +1,4 @@
 Feature: Pet Store Management
- 
-  Background: 
-    Given a user sends a POST request to add a new pet
-   
 
   Scenario: Add a new pet to the store
     Then the response status should be 200
