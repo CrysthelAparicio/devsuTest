@@ -27,10 +27,10 @@ def step_impl(context):
     context.utils.click(context.utils.getElementById(pageLogin.btnLogin))
     context.utils.isDisplayed(context.utils.getElementByClassName(pageLogin.headerContainer))
 
-@when('A user adds "{number}" products to cart')
-def step_impl(context, number):
+@when('A user adds {cant} products to cart')
+def step_impl(context, cant):
     elements = context.utils.getElementsByXpath(pagePurchase.listBtnAddToCart)
-    for i in range(0, len(number) + 1):
+    for i in range(0, len(cant) + 1):
         context.utils.click(elements[i])
         
 @when('A user clicks on shopping cart button')
@@ -45,15 +45,15 @@ def step_impl(context):
 def step_impl(context):
     context.utils.sendKey(context.utils.getElementById(pagePurchase.btnCheckout))
 
-@when('user enters "{firstName}" on first name input')
+@when('user enters {firstName} on first name input')
 def step_impl(context, firstName):
     context.utils.sendKey(context.utils.getElementById(pagePurchase.inputFirstName), firstName)
 
-@when('user enters "{lastName}" on last name input')
+@when('user enters {lastName} on last name input')
 def step_impl(context, lastName):
     context.utils.sendKey(context.utils.getElementById(pagePurchase.inputLastName), lastName)
 
-@when('user enters "{postalCode}" on postal code input')
+@when('user enters {postalCode} on postal code input')
 def step_impl(context, postalCode):
     context.utils.sendKey(context.utils.getElementById(pagePurchase.inputPostalCode), postalCode)
 
@@ -65,6 +65,6 @@ def step_impl(context):
 def step_impl(context):
     context.utils.click(context.utils.getElementById(pagePurchase.btnFinish))
 
-@then('A user sees "{message}" text')
-def step_impl(context, message):
-    context.utils.assertEqual(context.utils.getElementByClassName(pagePurchase.lbMessage), message)
+@then('A user sees {text} text')
+def step_impl(context, text):
+    context.utils.assertEqual(context.utils.getElementByClassName(pagePurchase.lbMessage), text)

@@ -8,8 +8,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
 #global variables
-user = Pam.User
-password = Pam.Pass
 pageLogin = Login()
 
 @given('A user goes to visit web site')
@@ -21,36 +19,29 @@ def step_impl(context):
     context.utils = Utils(context.driver)
     context.driver.get(Pam.Url)
 
-@when('A user enters a username')
-def step_impl(context):
-    context.utils.sendKey(context.utils.getElementById(pageLogin.inputUserName), user)
+@when("A user enters a username {userName}")
+def step_impl(context, userName):
+    context.utils.sendKey(context.utils.getElementById(pageLogin.inputUserName), userName)
 
-@when('A user enters a password')
-def step_impl(context):
+@when('A user enters a password {password}')
+def step_impl(context,password):
     context.utils.sendKey(context.utils.getElementById(pageLogin.inputPassword), password)
-@when('A user enters a username wrong')
-def step_impl(context):
-    context.utils.sendKey(context.utils.getElementById(pageLogin.inputUserName), "ss")
-
-@when('A user enters a password wrong')
-def step_impl(context):
-    context.utils.sendKey(context.utils.getElementById(pageLogin.inputPassword), "123")
 
 @when('A user clicks on login button')
 def step_impl(context):
     context.utils.click(context.utils.getElementById(pageLogin.btnLogin))
-@then('A user validate password is required message')
-def step_impl(context):
+@then('A user validate password is required {message}')
+def step_impl(context,message):
     elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorPasswordIsRequired)
-    context.utils.assertEqual(elementMessage,'Epic sadface: Password is required')
-@then('A user validate username is required message')
-def step_impl(context):
+    context.utils.assertEqual(elementMessage,message)
+@then('A user validate username is required {message}')
+def step_impl(context,message):
     elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorUserIsRequired)
-    context.utils.assertEqual(elementMessage,'Epic sadface: Username is required')
-@then('A user validate username and password message are wrong')
-def step_impl(context):
+    context.utils.assertEqual(elementMessage,message)
+@then('A user validate username and password {message} are wrong')
+def step_impl(context,message):
     elementMessage = context.utils.getElementByXpath(pageLogin.messageErrorUserAndPasswordDoNotMatch)
-    context.utils.assertEqual(elementMessage,'Epic sadface: Username and password do not match any user in this service')
+    context.utils.assertEqual(elementMessage,message)
 
 @then('A user sees swag labs title')
 def step_impl(context):
