@@ -5,9 +5,20 @@ const createEsbuildPlugin = require ("@badeball/cypress-cucumber-preprocessor/es
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
+    reporter: 'cypress-mochawesome-reporter',
+    video: true,
+    retries: 1,
+    reporterOptions: {
+        charts: true,
+        json: true,
+        reportsDir: 'reports/mochawesome',
+        reportFilename: 'my-report',
+        overwrite: false
+    },
   e2e: {
     async setupNodeEvents(on, config){
       require('@cypress/grep/src/plugin')(config);
+      require('cypress-mochawesome-reporter/plugin')(on);
       allureWriter(on, config);
       const bundler = createBundler({
         plugins: [createEsbuildPlugin(config)],
