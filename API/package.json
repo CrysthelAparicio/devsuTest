@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress open",
-    "open": "cypress run"
+    "open": "cypress run",
+    "merge-reports": "mochawesome-merge reports/mochawesome/*.json > reports/mochawesome/combined.json",
+    "generate-report": "marge reports/mochawesome/combined.json -o reports/mochawesome",
+    "test-and-report": "npm run open && npm run merge-reports && npm run generate-report"
   },
   "keywords": [
     "cypress",
