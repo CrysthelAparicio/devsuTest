@@ -90,3 +90,6 @@ This allows you to isolate the installation of packages to a **project-specific*
     $ allure serve allure-results
     ```
     
+## Important
+
+It is necessary to update the version of your Chrome browser to the latest version, that is: Version 127.0.6533.89
