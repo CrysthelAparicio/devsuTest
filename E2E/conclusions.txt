@@ -1,0 +1,49 @@
+Conclusion: Crysthel Aparicio
+
+Performing this proof of concept was an  enriching  experience  that  allowed  me to explore
+
+and validate the benefits of  test  automation. Implementing  scenarios  using  outlines  in
+
+Cucumber gave us the flexibility to run multiple test variants with minimal code duplication.
+
+This not only increased test coverage, but also made the development process more  efficient.
+
+In addition, by integrating assertions and sad paths testing, we ensured that the application
+
+not only works under ideal conditions, but also reacts appropriately to unexpected  inputs or
+
+potential bugs. This proactive approach improves the resilience and robustness of the software.
+
+A key aspect of this proof of concept was the application of Behavior Driven Development (BDD),
+
+which allowed us to define the test scenarios in a natural language, facilitating collaboration
+
+between developers, testers and stakeholders. This ensured that tests were aligned with business expectations.
+
+We also implemented the Page Object Model to structure our tests in a way that made them more maintainable and
+
+reusable, separating test logic from UI implementation details. This separation allowed us to apply Clean Code
+
+principles, ensuring that our code is readable, organized and easy to maintain.
+
+The creation of a dedicated development environment was crucial for testing consistency.  By isolating project
+
+specific dependencies, we ensured that tests were reproducible and executed  consistently,   regardless of the
+
+developer's environment.
+
+The integration of Behave and Allure reporting libraries provided us with a powerful  tool  to visualize  test
+
+status and results. The detailed and well-organized reports made it easy to identify bugs and provided a solid
+
+foundation for informed decision making by the development team and stakeholders.
+
+In conclusion, this proof of concept reaffirmed the importance of test automation in modern software development,
+
+highlighting its ability to increase  efficiency  and  improve  product  quality.
+
+
+I am grateful for the opportunity to have participated in this project.
+
+
+
