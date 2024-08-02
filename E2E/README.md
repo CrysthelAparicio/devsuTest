@@ -80,11 +80,13 @@ This allows you to isolate the installation of packages to a **project-specific*
 1. Run the tests using the following commands:
 
     ```bash
+    only run tests
     $ behave ./Feature/
     $ behave ./Feature/Purchase/test_purchase.feature
 
     report with allure
     $ behave -f allure_behave.formatter:AllureFormatter -o allure-results ./Feature/
+    $ behave -f allure_behave.formatter:AllureFormatter -o allure-results ./Feature/Login/test_login.feature 
 
     show report
     $ allure serve allure-results
