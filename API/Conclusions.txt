@@ -1,4 +1,4 @@
-## Conclusions
+Conclusion: Crysthel Aparicio
 
 The automation tests for the PetStore application have been successfully implemented using Cypress and Cucumber. 
 These tests cover a range of scenarios, including adding a pet, finding a pet by ID, updating a pet, and searching for pets by status.
