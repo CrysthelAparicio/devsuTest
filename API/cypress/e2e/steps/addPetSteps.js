@@ -35,13 +35,13 @@ When('I add the pet to the store', function () {
   });
 });
 
-Then('the response status should be {int}', function (status) {
+Then('The response status should be {int}', function (status) {
   cy.get('@response').then((response) => {
     expect(response.status).to.eq(status);
   });
 });
 
-Then('the response should contain the created pet data', function () {
+Then('The response should contain the created pet data', function () {
   cy.get('@response').then((response) => {
     cy.get('@addedPet').then((addedPet) => {
       validateCreatedPetResponse(response, addedPet);
@@ -49,7 +49,7 @@ Then('the response should contain the created pet data', function () {
   });
 });
 
-Then('the response should contain an error message containing {string}', function (expectedMessage) {
+Then('The response should contain an error message containing {string}', function (expectedMessage) {
   cy.get('@response').then((response) => {
     validateErrorResponse(response, expectedMessage);
   });

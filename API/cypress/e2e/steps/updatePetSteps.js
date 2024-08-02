@@ -53,7 +53,7 @@ When('I update the pet with the form data', function () {
   });
 });
 
-Then('the pet should be updated successfully', function () {
+Then('The pet should be updated successfully', function () {
   cy.get('@response').then((response) => {
  
     expect(response.status).to.eq(200);
