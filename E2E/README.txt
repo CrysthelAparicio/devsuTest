@@ -1,4 +1,4 @@
-# Test Automation with Selenium webdriver and Python
+# Test Automation with Selenium webdriver and Python 
 
 This project is a test automation solution using Selenium and Python. It allows to run functional tests in web browsers in an automated way.
 
