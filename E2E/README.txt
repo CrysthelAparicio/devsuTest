@@ -29,15 +29,15 @@ This allows you to isolate the installation of packages to a **project-specific*
 
 1. Clone the repository on your local machine:
 
-    `git clone https://github.com/CrysthelAparicio/devsuTest.git`
+    git clone https://github.com/CrysthelAparicio/devsuTest.git
 
 2. Navigate to the project directory:
 
-    `cd E2E/`
+    cd E2E/
 
 3. Open the code with Visual Studio Code 
     
-    `code .`
+    code .
 
 4. Open a new terminal and install the following
 
