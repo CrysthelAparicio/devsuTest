@@ -4,4 +4,4 @@
 /.env
 /cypress/videos
 /allure-results
-/allure-reports
+/allure-report
