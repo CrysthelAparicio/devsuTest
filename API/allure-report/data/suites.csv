@@ -1,0 +1,8 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Aug 02 14:23:49 BOT 2024","Fri Aug 02 14:23:49 BOT 2024","224","","Update a pet in the store with form data","","","","Update a pet - Invalid Data",""
+"passed","Fri Aug 02 14:23:54 BOT 2024","Fri Aug 02 14:23:55 BOT 2024","730","","Find pets by status","","","","Find pets by status - Happy Path",""
+"passed","Fri Aug 02 14:23:43 BOT 2024","Fri Aug 02 14:23:44 BOT 2024","192","","Find a pet by ID","","","","SAD PATH: Find a pet by ID - Invalid ID",""
+"passed","Fri Aug 02 14:23:48 BOT 2024","Fri Aug 02 14:23:49 BOT 2024","366","","Update a pet in the store with form data","","","","Update a pet - Happy Path",""
+"passed","Fri Aug 02 14:23:38 BOT 2024","Fri Aug 02 14:23:38 BOT 2024","237","","Add a new pet to the store","","","","SAD PATH: Add a new pet - Invalid Data",""
+"passed","Fri Aug 02 14:23:37 BOT 2024","Fri Aug 02 14:23:38 BOT 2024","1032","","Add a new pet to the store","","","","Happy Path: Add a new pet",""
+"passed","Fri Aug 02 14:23:43 BOT 2024","Fri Aug 02 14:23:43 BOT 2024","474","","Find a pet by ID","","","","Happy Path: Find a pet by ID",""
