@@ -1,11 +1,12 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { makeApiRequest, generateRandomId, createAddedPet,verifyFirstStatusIsSold } from '../../support/helper/utils';
-
+import faker from 'faker';
+let petId;
 let response;
 let addedPet;
 
 Given('I have a valid status', function () {
-  const petId = generateRandomId();
+   petId = generateRandomId();
   const petName = 'Fluffy';
   addedPet = createAddedPet(petId, petName);
   makeApiRequest({
@@ -35,10 +36,43 @@ When('I search for pets by status {string}', function (status) {
   });
 });
 Then('the list of pets should include the added pet {string}', function (status) {
-  cy.get('@response').then((response) => {
-    cy.get('@addedPet').then((addedPet) => {
-      expect(response.body[0]).to.have.property('status', status);
+  cy.get('@petId').then((petId) => {
+    const updatedPetName = faker.animal.cat();
+    const formData = `id=${petId}&name=${updatedPetName}&status=${status}`;
+
+    makeApiRequest({
+      method: 'POST',
+      endpoint: `/pet/${petId}`,
+      baseUrl: Cypress.env('URL_BASE'),
+      body: formData,
+      form: true
+    }).then((res) => {
+      response = res;
+      cy.wrap(response).as('response');
+      
+      addedPet.name = updatedPetName;
+      addedPet.status = status;
+      cy.wrap(addedPet).as('addedPet');
+     // console.log(response);
     });
   });
+  makeApiRequest({
+    method: 'GET',
+    endpoint: `/pet/findByStatus?status=${status}&sort_descendent=true`,
+    baseUrl: Cypress.env('URL_BASE')
+  }).then((res) => {
+    console.log(petId)
+    console.log(res)
+
+    const pet = res.body.find(p => p.id === addedPet.id);
+    expect(pet).to.exist;
+    expect(pet.name).to.eq(addedPet.name);
+    expect(pet.category.name).to.eq(addedPet.category.name);
+    expect(pet.photoUrls).to.deep.equal(addedPet.photoUrls);
+    expect(pet.tags[0].name).to.eq(addedPet.tags[0].name);
+    expect(pet.status).to.eq(addedPet.status);
+
+  });
 });
+  
 
