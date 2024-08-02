@@ -1,12 +1,10 @@
-# Conclusions
+Conclusion: Crysthel Aparicio
 
-1. The API tests for the PetStore application have been successfully implemented using Cypress and Cucumber.
-2. The tests cover various scenarios such as adding a pet, finding a pet by ID, updating a pet, and finding pets by status.
-3. The use of Cucumber ensures that the tests are readable and maintainable, while Cypress provides a powerful testing framework.
+The automation tests for the PetStore application have been successfully implemented using Cypress and Cucumber. 
+These tests cover a range of scenarios, including adding a pet, finding a pet by ID, updating a pet, and searching for pets by status.
 
-4. **Issue with ID Generation:**
-   During the testing process, an issue was encountered with ID generation. Specifically, the ID did not change in the response when the ID value was set to zero in the request body. This discrepancy impacts the accuracy of the tests and needs to be addressed to ensure that unique IDs are correctly assigned and reflected in the response.
+Using Cucumber ensures that the tests are readable and maintainable, while Cypress provides a robust testing framework.
 
-5. **Absence of Sad Path for Status Code:**
-   It was observed that no sad path was implemented for scenarios involving status code checks. When querying with a non-existent or empty status, the response consistently returned a 200 OK status. This behavior may lead to confusion and does not accurately represent error handling for invalid or missing status values. Implementing proper sad path scenarios and handling for various status codes will enhance the robustness of the tests.
+- During the automation testing process, an issue with ID generation was discovered. Specifically, when the ID value in the request body was set to zero, the ID in the response remained unchanged.
 
+- No sad path scenarios were implemented for the GET /find by status endpoint because When queried with a non-existent or empty status, the response consistently returned a 200 OK status.
