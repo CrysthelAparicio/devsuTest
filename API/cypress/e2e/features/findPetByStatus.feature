@@ -4,6 +4,6 @@ Feature: Find pets by status
     Given I have a valid status
     When I search for pets by status "sold"
     Then the response status should be 200
-    And the list of pets should include the added pet "sold"
+    And the list includes the modified pet "sold"
 
   
