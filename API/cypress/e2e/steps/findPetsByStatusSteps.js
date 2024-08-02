@@ -35,7 +35,7 @@ When('I search for pets by status {string}', function (status) {
     cy.wrap(res).as('response');
   });
 });
-Then('the list includes the modified pet {string}', function (status) {
+Then('The list includes the modified pet {string}', function (status) {
   cy.get('@petId').then((petId) => {
     const updatedPetName = faker.animal.cat();
     const formData = `id=${petId}&name=${updatedPetName}&status=${status}`;

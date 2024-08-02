@@ -40,7 +40,7 @@ When('I search for the pet by ID', function () {
   });
 });
 
-Then('the pet details should match the added pet', function () {
+Then('The pet details should match the added pet', function () {
   cy.get('@response').then((response) => {
     cy.get('@addedPet').then((addedPet) => {
       expect(response.body.name).to.eq(addedPet.name);
